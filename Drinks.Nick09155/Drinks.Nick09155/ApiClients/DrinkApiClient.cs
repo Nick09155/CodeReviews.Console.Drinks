@@ -34,4 +34,13 @@ public class DrinkApiClient
         // return categories;
         return response?.drinks ?? new List<DrinkCategoryDto>();
     }
+
+    public async Task<List<DrinkDto>> GetDrinksByCategory(string category)
+    {
+        var response =
+            await _httpClient.GetFromJsonAsync<ListDrinkDto>(
+                "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink");
+        return response?.drinks ?? new List<DrinkDto>();
+        // return response;
+    }
 }

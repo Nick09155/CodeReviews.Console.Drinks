@@ -11,4 +11,4 @@ HttpClient client = new HttpClient();
 
 UserMenu userMenu = new UserMenu();
 
-userMenu.GetUserInput();
+await userMenu.GetUserInput();
