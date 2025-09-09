@@ -6,7 +6,6 @@ namespace Drinks.Nick09155;
 
 public class UserMenu
 {
-    public DrinkApiClient _drinkApiClient;
     private string[] drinkCategories;
     private DrinksService drinksService;
     private string[] drinksByCategory;
@@ -15,7 +14,6 @@ public class UserMenu
     private bool showDrinksMenu = false;
     public UserMenu()
     {
-        _drinkApiClient = new DrinkApiClient();
         drinksService = new DrinksService();
     }
     
@@ -70,19 +68,21 @@ public class UserMenu
         int selectedIndex = ShowMenu("\n\nDRINKS\nWhat drink would you like more info for?", drinksByCategory);
         string drinkId = fullDrinksByCategory[selectedIndex].idDrink;
         var drinkDetails = await drinksService.GetDrinkDetail(drinkId);
-        ShowDrinkDetails(drinkDetails);
+        Helpers.DisplayTable(drinkDetails);
+        Helpers.PressAnyKeyToContinue();
+        // ShowDrinkDetails(drinkDetails);
     }
-
-    public void ShowDrinkDetails(List<DrinkDetailDto> drinkDetails)
-    {
-        foreach (var drinkDetail in drinkDetails)
-        {
-            Console.WriteLine(drinkDetail.StrDrink);
-            Console.WriteLine(drinkDetail.StrAlcoholic);
-        }
-
-        Console.ReadKey();
-    }
+    //
+    // public void ShowDrinkDetails(List<DrinkDetailDto> drinkDetails)
+    // {
+    //     foreach (var drinkDetail in drinkDetails)
+    //     {
+    //         Console.WriteLine(drinkDetail.StrDrink);
+    //         Console.WriteLine(drinkDetail.StrAlcoholic);
+    //     }
+    //
+    //     Console.ReadKey();
+    // }
 
     private int ShowMenu(string title, string[] options)
     {
