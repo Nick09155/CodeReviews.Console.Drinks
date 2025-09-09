@@ -1,4 +1,5 @@
 using Drinks.Nick09155.ApiClients;
+using Drinks.Nick09155.DTO;
 
 namespace Drinks.Nick09155.Services;
 
@@ -17,10 +18,16 @@ public class DrinksService
         return categories.Select(c => c.strCategory).ToArray();
     }
     
-    public async Task<string[]> GetDrinksByCategory(string category)
+    public async Task<List<DrinkDto>> GetDrinksByCategory(string category)
     {
         var drinksList = await _drinkApiClient.GetDrinksByCategory(category);
-        return drinksList.Select(c => c.StrDrink).ToArray();
+        return drinksList.ToList();
+    }
+
+    public async Task<List<DrinkDetailDto>> GetDrinkDetail(string drinkId)
+    {
+        var drinkDetail = await _drinkApiClient.GetDrinkDetail(drinkId);
+        return drinkDetail;
     }
 
 }

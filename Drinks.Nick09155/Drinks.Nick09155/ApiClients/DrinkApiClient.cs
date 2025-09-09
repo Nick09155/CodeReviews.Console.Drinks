@@ -11,11 +11,6 @@ public class DrinkApiClient
     {
         _httpClient = new HttpClient();
     }
-
-    public async Task<List<DrinkDto>> GetDrinks()
-    {
-        return await _httpClient.GetFromJsonAsync<List<DrinkDto>>("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita");
-    }
     
     public async Task<List<DrinkCategoryDto>> GetDrinkCategories()
     {
@@ -37,10 +32,24 @@ public class DrinkApiClient
 
     public async Task<List<DrinkDto>> GetDrinksByCategory(string category)
     {
-        var response =
-            await _httpClient.GetFromJsonAsync<ListDrinkDto>(
-                "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink");
+        ListDrinkDto response = null;
+        try
+        {
+            response =
+                await _httpClient.GetFromJsonAsync<ListDrinkDto>(
+                    $"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c={category}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while fetching drink categories: {ex.Message}");
+        }
+       
         return response?.drinks ?? new List<DrinkDto>();
-        // return response;
+    }
+    
+    public async Task<List<DrinkDetailDto>> GetDrinkDetail(string drinkId)
+    {
+        var response = await _httpClient.GetFromJsonAsync<ListDrinkDetailDto>($"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={drinkId}");
+        return response?.drinks ?? new List<DrinkDetailDto>();
     }
 }
