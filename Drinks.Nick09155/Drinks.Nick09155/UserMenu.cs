@@ -1,4 +1,3 @@
-using Drinks.Nick09155.ApiClients;
 using Drinks.Nick09155.DTO;
 using Drinks.Nick09155.Services;
 
@@ -70,19 +69,7 @@ public class UserMenu
         var drinkDetails = await drinksService.GetDrinkDetail(drinkId);
         Helpers.DisplayTable(drinkDetails);
         Helpers.PressAnyKeyToContinue();
-        // ShowDrinkDetails(drinkDetails);
     }
-    //
-    // public void ShowDrinkDetails(List<DrinkDetailDto> drinkDetails)
-    // {
-    //     foreach (var drinkDetail in drinkDetails)
-    //     {
-    //         Console.WriteLine(drinkDetail.StrDrink);
-    //         Console.WriteLine(drinkDetail.StrAlcoholic);
-    //     }
-    //
-    //     Console.ReadKey();
-    // }
 
     private int ShowMenu(string title, string[] options)
     {
@@ -117,7 +104,6 @@ public class UserMenu
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             keyPressed = keyInfo.Key;
 
-            // Update selectedIndex based on arrow keys.
             if (keyPressed == ConsoleKey.UpArrow)
             {
                 selectedIndex--;

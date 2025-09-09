@@ -26,16 +26,8 @@ public class Helpers
             var ingredientsText = string.Join(", ", ingredients);
             table.AddRow($"{drinkDetail.IdDrink}", $"[green]{drinkDetail.StrDrink}[/]",$"[yellow]{drinkDetail.StrCategory}[/]", $"[red]{drinkDetail.StrAlcoholic}[/]", $"[violet]{drinkDetail.StrGlass}[/]", $"[blue]{ingredientsText}[/]");
         }
-        // foreach (var drinkDetail in drinkDetails)
-        // {
-        //     var ingredients = drinkDetail.GetIngredients;
-        //     var ingredientsText = string.Join(", ", ingredients);
-        //     table.AddRow($"{ingredientsText}");
-        // }
-  
-            
-        AnsiConsole.Write(table);
 
+        AnsiConsole.Write(table);
     }
     
     internal static void PressAnyKeyToContinue()

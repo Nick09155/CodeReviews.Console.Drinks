@@ -14,7 +14,6 @@ public class DrinkApiClient
     
     public async Task<List<DrinkCategoryDto>> GetDrinkCategories()
     {
-        // DrinkCategoryResponse categories = null;
         DrinkCategoryResponse response = null;
         try
         {
@@ -22,11 +21,8 @@ public class DrinkApiClient
         } catch (Exception ex)
         {
             Console.WriteLine($"An error occurred while fetching drink categories: {ex.Message}");
-            // return new List<DrinkCategoryDto>();
         }
         Console.WriteLine("HEllO");
-        // List<DrinkCategoryDto> categories2 = categories.drinks;
-        // return categories;
         return response?.drinks ?? new List<DrinkCategoryDto>();
     }
 

@@ -21,11 +21,11 @@ public class DrinkDetailDto
             var ingredients = new List<string>();
             for (int i = 1; i <= 15; i++)
             {
-                if (ExtensionData.TryGetValue($"strIngredient{i}", out var ingredientElement) && !string.IsNullOrWhiteSpace(ingredientElement.GetString()))
+                if (ExtensionData.TryGetValue($"strIngredient{i}", out var ingredientElement) && ingredientElement.ValueKind == JsonValueKind.String && !string.IsNullOrWhiteSpace(ingredientElement.GetString()))
                 {
                     string ingredient = ingredientElement.GetString();
                     string measure = "";
-                    if (ExtensionData.TryGetValue($"strMeasure{i}", out var measureElement) &&
+                    if (ExtensionData.TryGetValue($"strMeasure{i}", out var measureElement) && measureElement.ValueKind == JsonValueKind.String &&
                         measureElement.ValueKind == JsonValueKind.String)
                     {
                         measure = measureElement.GetString() ?? "";
